@@ -5,7 +5,7 @@ using namespace std;
 #define MOD 1000000007
 #define MOD1 998244353
 #define INF 1e18
-#define nline "\n"
+#define nli "\n"
 #define pb push_back
 #define ppb pop_back
 #define mp make_pair
@@ -52,26 +52,31 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 
 void solve(){
+
+    int n, k;   cin >> n >> k;
     
-    string s;   cin >> s;
-    stack<int> st;
-    int mo = 0;
-    for(int i = 0; i < s.size(); i++){
-        if(st.empty() || s[i] == st.top()){
-            st.push(s[i]);
-        }
-        else if(s[i] != st.top()){
-            st.pop();
-            mo++;
-        }
+    bool isRem_zero = false;
+    int maxRem = 0, even = 0;
+    for(int i = 0; i < n; i++){
+        int num;    cin >> num;
+        if(num % k == 0)  isRem_zero = true;
+        else if(num % 2 == 0)   even++;
+        maxRem = max(maxRem, num % k);
     }
 
-    cout << (mo & 1  ?  "DA"  :   "NET") << nline;
+    if(isRem_zero)  cout << 0 << nli;
+    else if(k == 4){
+        if(even >= 2)       cout << 0 << nli;
+        else if(even == 1)  cout << 1 << nli;
+        else                cout << min(k - maxRem, 2) << nli;
+    }
+    else            cout << k - maxRem << nli;
+
 }
 
 int main() {
 #ifndef ONLINE_JUDGE
-	freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
 
     fastio();

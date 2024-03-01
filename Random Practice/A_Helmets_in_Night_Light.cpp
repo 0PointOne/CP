@@ -50,28 +50,55 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
+bool cmp(pair<ll, ll>  &a, pair<ll, ll> &b){
+    return a.second < b.second;
+}
 
 void solve(){
-    
-    string s;   cin >> s;
-    stack<int> st;
-    int mo = 0;
-    for(int i = 0; i < s.size(); i++){
-        if(st.empty() || s[i] == st.top()){
-            st.push(s[i]);
-        }
-        else if(s[i] != st.top()){
-            st.pop();
-            mo++;
-        }
+
+    ll n, p;   cin >> n >> p;
+    vector<pair<ll, ll> > v(n, {0, 0});
+    ll num;  
+    for(ll i = 0; i < n; i++){
+        cin >> num;
+        v[i].ff = num;
     }
 
-    cout << (mo & 1  ?  "DA"  :   "NET") << nline;
+    for(ll i = 0; i < n; i++){
+        cin >> num;
+        v[i].ss = num;
+    }
+
+    sort(v.begin(), v.end(), cmp);
+    debug(v);
+
+    ll res = n;
+
+    ll cost = p;
+    res--;
+
+    for(ll i = 0; i < n; i++){
+
+        if(res == 0 || v[i].second >= p){
+            break;
+        }
+        else{
+            ll mn = min(res, v[i].ff);
+            debug(mn)
+            res -= mn;
+            cost += mn * v[i].second;
+        }
+
+    }
+
+    cost += res * p;
+    cout << cost << nline;
+
 }
 
 int main() {
 #ifndef ONLINE_JUDGE
-	freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
 
     fastio();
