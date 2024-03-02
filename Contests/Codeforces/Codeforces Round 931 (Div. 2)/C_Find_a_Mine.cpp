@@ -11,6 +11,7 @@ using namespace std;
 #define mp make_pair
 #define ff first
 #define ss second
+#define int long long
 #define PI 3.141592653589793238462
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
@@ -19,8 +20,6 @@ using namespace std;
 #define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << endl;
 #define input_v for(auto &it : v)   cin >> it;
 
-
-typedef long long ll;
 typedef unsigned long long ull;
 typedef long double lld;
 
@@ -30,7 +29,6 @@ typedef long double lld;
 #define debug(x)
 #endif
 
-void _print(ll t) {cerr << t;}
 void _print(int t) {cerr << t;}
 void _print(string t) {cerr << t;}
 void _print(char t) {cerr << t;}
@@ -49,38 +47,35 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
-
-int minCoins(int n, vector<int>& coins){
-    vector<int> dp(n + 1, INF);
-    dp[0] = 0;
-
-    for(int i = 1; i <= n; i++){
-        for(int coin : coins){
-            if(i - coin >= 0){
-                dp[i] = min(dp[i], dp[i - coin] + 1);
-            }
-        }
-    }
-
-    return dp[n];
+int que(int x, int y) {
+    cout << "? " << x << " " << y << endl;
+    int ans; cin >> ans; 
+    return ans;
 }
 
 void solve(){
 
-    int n;  cin >> n;
 
-    int cnt = n / 15;
-    int rem = n % 15;
-    if(cnt > 0){
-        cnt--;
-        rem += 15;
-    }
+    int n, m; cin >> n >> m;
 
-    vector<int> coins = {1, 3, 6, 10, 15};
+    int q1 = que(1, 1);
 
-    int result = minCoins(rem, coins);
-    cout << result + cnt << endl;
+    int x = min(n, 1 + q1),     y = min(m, 1 + q1);
 
+    int q2 = que(x, q1 - x + 2),    q3 = que(q1 - y + 2, y);
+
+    bool isTrue = false;
+    if((x - (q2 / 2) <= n) && (q1 - x + 2 + (q2 / 2) <= m) && (q2 % 2 == 0)){
+
+        int q4 = que(x - (q2 / 2), q1 - x + 2 + (q2 / 2));
+        isTrue = (q4 != 0);
+    } 
+    else isTrue = true;
+    
+    if(!isTrue) cout << "! " << x - (q2 / 2) << " " << q1 - x + 2 + (q2 / 2) << endl;
+
+    else cout << "! " << q1 - y + 2 + (q3 / 2) << " " << y - (q3 / 2) << endl;
+    
 }
 
 signed main() {
@@ -89,7 +84,8 @@ signed main() {
 #endif
 
     fastio();
-    ll t = 1;   	
+    int t = 1;   	
     cin >> t;
-    while(t--){     solve(); };
+    while(t--){     solve(); }
+    return 0;
 }
