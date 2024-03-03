@@ -69,14 +69,12 @@ void solve(){
         if(mp[s[i]] == 0) r_cnt--;
 
         ans = max(ans, l_cnt + r_cnt);
-        // debug(mp)
-        // debug(mp1)
+
         debug(l_cnt)
         debug(r_cnt)
     }
 
     cout << ans << nline;
-
 
     mp.clear(); mp1.clear();
     
