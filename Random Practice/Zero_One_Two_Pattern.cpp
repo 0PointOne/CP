@@ -50,37 +50,22 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int n;  cin >> n;
-    vector<int> v(n);
-    input_v(v);
+    int n;
+    cin >> n;
+    for(int i = 1; i <= 2*n - 1; i++){
+        for(int j = 1; j <= 2*n - 1; j++){
 
-    int track = 0;
-    vector<pair<int,int> > ans;
-    for(int i = n-1; i >= 0; i--){
-
-        if(i == n-1 || v[i] != v[i+1]){
-            ans.push_back({i + 1, i + 1});
-            track = v[i];
-        } 
-        else if(track == v[i]){
-            ans.back().ss = i + 1;
+            if(i == j && i == n){
+                cout << i % 3;
+            }
+            else if(i == j || j == (2 * n) - i){
+                cout << i % 3;
+            }
+            else cout << " ";
         }
+        cout << nline;
     }
-    reverse(all(ans));
-    int i = 0;
-    for(auto it: ans){
-        if(it.ff == it.ss){
-            cout << -1 << nline;
-            return;
-        }
-        int st = it.ff, e = it.ss;
-        v[i] = st;  i++;
-
-        while(e < st){
-            v[i++] = e++;
-        }
-    }
-    print_v(v);
+    
 }
 
 signed main() {
@@ -90,7 +75,7 @@ signed main() {
 
     fastio();
     int t = 1;   	
-    cin >> t;
-    while(t--){ solve(); }
+    // cin >> t;
+    while(t--){     solve(); }
     return 0;
 }

@@ -50,37 +50,25 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int n;  cin >> n;
-    vector<int> v(n);
-    input_v(v);
+    int n, k;   cin >> n >> k;
+    string s;   cin >> s;
 
-    int track = 0;
-    vector<pair<int,int> > ans;
-    for(int i = n-1; i >= 0; i--){
-
-        if(i == n-1 || v[i] != v[i+1]){
-            ans.push_back({i + 1, i + 1});
-            track = v[i];
-        } 
-        else if(track == v[i]){
-            ans.back().ss = i + 1;
-        }
+    int mn = 0;
+    for(int i = 0; i < k; i++){
+        if(s[i] == 'W') mn++;
     }
-    reverse(all(ans));
-    int i = 0;
-    for(auto it: ans){
-        if(it.ff == it.ss){
-            cout << -1 << nline;
-            return;
-        }
-        int st = it.ff, e = it.ss;
-        v[i] = st;  i++;
 
-        while(e < st){
-            v[i++] = e++;
-        }
+    int cnt = mn;
+    for(int i = k; i < n; i++){
+        if(s[i-k] == 'W')  cnt--;
+        if(s[i] == 'W')    cnt++;
+
+        debug(cnt)
+
+        mn = min(cnt, mn);
     }
-    print_v(v);
+    
+    cout << mn << nline;
 }
 
 signed main() {
@@ -91,6 +79,6 @@ signed main() {
     fastio();
     int t = 1;   	
     cin >> t;
-    while(t--){ solve(); }
+    while(t--){     solve(); }
     return 0;
 }

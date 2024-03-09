@@ -53,34 +53,9 @@ void solve(){
     int n;  cin >> n;
     vector<int> v(n);
     input_v(v);
-
-    int track = 0;
-    vector<pair<int,int> > ans;
-    for(int i = n-1; i >= 0; i--){
-
-        if(i == n-1 || v[i] != v[i+1]){
-            ans.push_back({i + 1, i + 1});
-            track = v[i];
-        } 
-        else if(track == v[i]){
-            ans.back().ss = i + 1;
-        }
-    }
-    reverse(all(ans));
-    int i = 0;
-    for(auto it: ans){
-        if(it.ff == it.ss){
-            cout << -1 << nline;
-            return;
-        }
-        int st = it.ff, e = it.ss;
-        v[i] = st;  i++;
-
-        while(e < st){
-            v[i++] = e++;
-        }
-    }
-    print_v(v);
+    sort(all(v));
+    cout << v[0] + v[1] << nline;
+    
 }
 
 signed main() {
@@ -90,7 +65,7 @@ signed main() {
 
     fastio();
     int t = 1;   	
-    cin >> t;
-    while(t--){ solve(); }
+    // cin >> t;
+    while(t--){     solve(); }
     return 0;
 }
