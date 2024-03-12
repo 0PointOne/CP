@@ -1,1 +1,18 @@
-pf [ 0 1 1 2 2 3 4 5 6 7 ]
+ans 8
+ans 16
+ans 25
+ans 25
+"\n" 
+
+ans 42
+ans 42
+ans 42
+ans 42
+"\n" 
+
+ans 35
+ans 35
+ans 35
+ans 35
+"\n" 
+
