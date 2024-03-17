@@ -48,10 +48,14 @@ template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_pr
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
 
-void solve(){
+void solve(vector<int> &Xr){
 
     int a, b;   cin >> a >> b;
     
+    int k = Xr[a-1] ^ b;
+    if(k == 0)              cout << a << nline;
+    else if(k > a || k < a) cout << a + 1 << nline;
+    else                    cout << a + 2 << nline;
     
 }
 
@@ -63,6 +67,9 @@ signed main() {
     fastio();
     int t = 1;   	
     cin >> t;
-    while(t--){     solve(); }
+    vector<int> Xr;
+    Xr.push_back(0);
+    for(int i = 1; i <= 3 * 1e5; i++)   Xr.push_back(Xr[i-1] ^ i);
+    while(t--){     solve(Xr); }
     return 0;
 }
