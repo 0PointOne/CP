@@ -1,5 +1,3 @@
- // while(have_stick < 0 || have_stick < need){
-            //     have_stick--;
-            //     have_stick += x;
-            //     op++;
-            // }
+
+    // debug((double)log(a) / log(b))
+    // debug((int)(log(a) / log(b)))
