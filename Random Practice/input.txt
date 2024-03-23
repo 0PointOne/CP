@@ -1,7 +1,11 @@
-6
-9 2
-1337 1
-1 1
-50000000 4
-991026972 997
-1234 5678
+5
+5
+aaaaa
+1
+z
+5
+ababa
+14
+bcdaaaabcdaaaa
+20
+abcdefghijklmnopqrst
