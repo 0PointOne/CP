@@ -59,7 +59,6 @@ void solve(){
         sum += v[i];
 
         ans = max(ans, sum);
-        debug(ans)
 
         if(sum < 0) sum = 0;
     }
