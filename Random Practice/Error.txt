@@ -1,0 +1,6 @@
+sum 1
+sum 12
+sum 0
+sum 75
+sum 20
+sum 36
