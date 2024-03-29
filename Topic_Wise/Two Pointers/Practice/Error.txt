@@ -1,0 +1,8 @@
+ans -1
+ans 3
+ans 3
+ans 6
+ans 9
+ans 9
+ans 9
+ans 9
