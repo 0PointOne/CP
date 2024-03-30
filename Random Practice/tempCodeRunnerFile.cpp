@@ -1,3 +1,3 @@
-  // if(j == n-1){
-            //     cnt[v[i][j]]++;
-            // }
+or(int i = 0; i < n; i++){
+    //     sum -= v[i].second;
+    // }
