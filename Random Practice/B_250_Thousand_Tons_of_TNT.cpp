@@ -16,15 +16,15 @@ using namespace std;
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-#define print_v(v) for(auto it : v) cout << it << " "; cout << endl;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << endl;
+#define print_v(v) for(auto it : v) cout << it << " "; cout << nline;
+#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << nline;
 #define input_v for(auto &it : v)   cin >> it;
 
 typedef unsigned long long ull;
 typedef long double lld;
 
 #ifndef ONLINE_JUDGE
-#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#define debug(x) cerr << #x <<" "; _print(x); cerr << nline;
 #else
 #define debug(x)
 #endif
@@ -47,28 +47,53 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
-void solve(){
-
-    int n, k, t;    cin >> n >> k >> t;
-
-    vector<int> v(n);   input_v(v);
-
-    int cnt = 0, ans = 0;
-    for(int i = 0; i < n; i++){
-        if(v[i] <= t)   cnt++;
-
-        else{
-            if(cnt >= k){
-                ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
-            }
-            cnt = 0;
+vector<int> divi(int n){
+    vector<int> v;
+    for(int i = 1; i * i <= n; i++){
+        if(n % i == 0){
+            v.push_back(i);
+            if(n % i != i)  v.push_back(n/i);
         }
     }
-    if(cnt >= k){
-        ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
+    return v;
+}
+
+void solve(){
+
+    int n;  cin >> n;
+    vector<int> v(n), pf(n + 1);
+    input_v(v);
+    vector<int> di = divi(n);
+    sort(all(di));
+
+    for(int i = 1; i <= n; i++)      pf[i] = pf[i-1] + v[i-1];
+    
+    int ans = *max_element(all(v)) - *min_element(all(v));
+    map<int, pair<int, int> > mp;
+
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j < di.size()-1; j++){
+            if( i % di[j] == 0){
+
+                int k = pf[i] - pf[i - di[j]];
+                if(!mp.count(di[j])){
+                    mp[di[j]].ff = k;
+                    mp[di[j]].ss = k;
+                }
+                else{
+                    if(mp[di[j]].ff > k)    mp[di[j]].ff = k;
+                    if(mp[di[j]].ss < k)    mp[di[j]].ss = k;
+                }
+            }
+        }
     }
 
-    cout << ans << nline;
+    for(auto it: mp){
+        ans = max(ans, it.ss.ss - it.ss.ff);
+    }
+
+    cout << ans << endl;
+    
 }
 
 signed main() {
@@ -77,7 +102,6 @@ signed main() {
 #endif
 
     fastio();
-
     int t = 1;   	
     cin >> t;
     while(t--){     solve(); }

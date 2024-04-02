@@ -16,15 +16,15 @@ using namespace std;
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-#define print_v(v) for(auto it : v) cout << it << " "; cout << endl;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << endl;
+#define print_v(v) for(auto it : v) cout << it << " "; cout << nline;
+#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << nline;
 #define input_v for(auto &it : v)   cin >> it;
 
 typedef unsigned long long ull;
 typedef long double lld;
 
 #ifndef ONLINE_JUDGE
-#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#define debug(x) cerr << #x <<" "; _print(x); cerr << nline;
 #else
 #define debug(x)
 #endif
@@ -47,28 +47,31 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
+
 void solve(){
 
-    int n, k, t;    cin >> n >> k >> t;
+    int n;  cin >> n;
+    vector<int> v(n);
+    input_v(v);
 
-    vector<int> v(n);   input_v(v);
+    int cnt = 0, sum = 0;
+    int l = 0, r = 0;
 
-    int cnt = 0, ans = 0;
-    for(int i = 0; i < n; i++){
-        if(v[i] <= t)   cnt++;
-
-        else{
-            if(cnt >= k){
-                ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
-            }
-            cnt = 0;
+    while(r < n){
+        if(v[r] < 0){
+            cnt++;
+            while(r < n && v[r] <= 0)   r++;
         }
-    }
-    if(cnt >= k){
-        ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
+        r++;
     }
 
-    cout << ans << nline;
+    for(int i = 0; i < n; i++){
+        if(v[i] < 0)    v[i] *= -1;
+        sum += v[i];
+    }
+
+    cout << sum << " " << cnt << nline;
+    
 }
 
 signed main() {
@@ -77,7 +80,6 @@ signed main() {
 #endif
 
     fastio();
-
     int t = 1;   	
     cin >> t;
     while(t--){     solve(); }

@@ -16,15 +16,15 @@ using namespace std;
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-#define print_v(v) for(auto it : v) cout << it << " "; cout << endl;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << endl;
+#define print_v(v) for(auto it : v) cout << it << " "; cout << nline;
+#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << nline;
 #define input_v for(auto &it : v)   cin >> it;
 
 typedef unsigned long long ull;
 typedef long double lld;
 
 #ifndef ONLINE_JUDGE
-#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#define debug(x) cerr << #x <<" "; _print(x); cerr << nline;
 #else
 #define debug(x)
 #endif
@@ -47,28 +47,41 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
+int power(int x, int n){
+    double result = exp(log(x) * n);
+    result = round(result);
+    return static_cast<int>(result);
+}
+
 void solve(){
 
-    int n, k, t;    cin >> n >> k >> t;
+    int n, q;   cin >> n >> q;
+    vector<int> v(n);
+    vector<int> x;
+    map<int, int> cnt;
+    for(int i = 0; i < n; i++)  cin >> v[i];
 
-    vector<int> v(n);   input_v(v);
+    for(int i = 0; i < q; i++){
+        int num;    cin >> num;
+        if(!cnt[num])    x.push_back(num);
+        cnt[num]++;
+    }
 
-    int cnt = 0, ans = 0;
-    for(int i = 0; i < n; i++){
-        if(v[i] <= t)   cnt++;
+    for(auto i: x){
 
-        else{
-            if(cnt >= k){
-                ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
-            }
-            cnt = 0;
+        int k = power(2, i);
+        debug(k)
+        int s = power(2, i - 1);
+        for(int j = 0; j < n; j++){
+
+            if(v[j] % k == 0){
+                v[j] += s;
+            }  
         }
     }
-    if(cnt >= k){
-        ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
-    }
 
-    cout << ans << nline;
+    print_v(v)
+
 }
 
 signed main() {
@@ -77,7 +90,6 @@ signed main() {
 #endif
 
     fastio();
-
     int t = 1;   	
     cin >> t;
     while(t--){     solve(); }

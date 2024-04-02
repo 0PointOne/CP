@@ -16,15 +16,15 @@ using namespace std;
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-#define print_v(v) for(auto it : v) cout << it << " "; cout << endl;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << endl;
+#define print_v(v) for(auto it : v) cout << it << " "; cout << nline;
+#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << nline;
 #define input_v for(auto &it : v)   cin >> it;
 
 typedef unsigned long long ull;
 typedef long double lld;
 
 #ifndef ONLINE_JUDGE
-#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#define debug(x) cerr << #x <<" "; _print(x); cerr << nline;
 #else
 #define debug(x)
 #endif
@@ -47,28 +47,41 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
+void dfs(int s, int par, vector<int> (&adj)[], vector<int> &leaf_node){
+
+    bool ist = true;
+    for(auto p: adj[s]){
+        if(p == par)    continue;
+
+        ist = false;
+        dfs(p, s, adj, leaf_node);
+
+        leaf_node[s] += leaf_node[p];
+    }
+    if(ist) leaf_node[s]++;
+}
+
 void solve(){
 
-    int n, k, t;    cin >> n >> k >> t;
-
-    vector<int> v(n);   input_v(v);
-
-    int cnt = 0, ans = 0;
-    for(int i = 0; i < n; i++){
-        if(v[i] <= t)   cnt++;
-
-        else{
-            if(cnt >= k){
-                ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
-            }
-            cnt = 0;
-        }
-    }
-    if(cnt >= k){
-        ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
+    int n;  cin >> n;
+    vector<int> adj[n + 1];
+    
+    for(int i = 0; i < n - 1; i++){
+        int a, b;   cin >> a >> b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
 
-    cout << ans << nline;
+    int q;  cin >> q;
+    vector<int> leaf_node(n + 1, 0);
+
+    dfs(1, -1, adj, leaf_node);
+
+    while(q--){
+        int a, b;   cin >> a >> b;
+        cout << leaf_node[a] * leaf_node[b] << nline;
+    }
+    
 }
 
 signed main() {
@@ -77,7 +90,6 @@ signed main() {
 #endif
 
     fastio();
-
     int t = 1;   	
     cin >> t;
     while(t--){     solve(); }

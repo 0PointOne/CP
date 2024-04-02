@@ -16,15 +16,15 @@ using namespace std;
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-#define print_v(v) for(auto it : v) cout << it << " "; cout << endl;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << endl;
+#define print_v(v) for(auto it : v) cout << it << " "; cout << nline;
+#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << nline;
 #define input_v for(auto &it : v)   cin >> it;
 
 typedef unsigned long long ull;
 typedef long double lld;
 
 #ifndef ONLINE_JUDGE
-#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#define debug(x) cerr << #x <<" "; _print(x); cerr << nline;
 #else
 #define debug(x)
 #endif
@@ -49,26 +49,44 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int n, k, t;    cin >> n >> k >> t;
-
-    vector<int> v(n);   input_v(v);
-
-    int cnt = 0, ans = 0;
+    int n;  cin >> n;
+    vector< pair<int, int> > a, b, c;
+    int num;
     for(int i = 0; i < n; i++){
-        if(v[i] <= t)   cnt++;
-
-        else{
-            if(cnt >= k){
-                ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
-            }
-            cnt = 0;
-        }
+        cin >> num;
+        a.push_back({num, i});
     }
-    if(cnt >= k){
-        ans += ((cnt - k + 1) * (cnt - k + 2)) / 2;
+    for(int i = 0; i < n; i++){
+        cin >> num;
+        b.push_back({num, i});
+    }
+    for(int i = 0; i < n; i++){
+        cin >> num;
+        c.push_back({num, i});
+    }
+    sort(a.begin(), a.end(), greater());
+    sort(b.begin(), b.end(), greater());
+    sort(c.begin(), c.end(), greater());
+
+    debug(a)
+    debug(b)
+    debug(c)
+    debug("\n")
+
+    int ans = INT_MIN;
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            for(int k = 0; k < 3; k++){
+                if(a[i].ss != b[j].ss && b[j].ss != c[k].ss && a[i].ss != c[k].ss){
+
+                    ans = max(ans, a[i].ff + b[j].ff + c[k].ff);
+                }
+            }
+        }
     }
 
     cout << ans << nline;
+    
 }
 
 signed main() {
@@ -77,7 +95,6 @@ signed main() {
 #endif
 
     fastio();
-
     int t = 1;   	
     cin >> t;
     while(t--){     solve(); }
