@@ -50,26 +50,35 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int n, m, h;    cin >> n >> m >> h;
-    vector<int> e(n), p(m);
-    for(int i = 0; i < n; i++)  cin >> e[i];
-    for(int i = 0; i < m; i++)  cin >> p[i], p[i] *= h;
-
-    sort(all(e), greater());
-    sort(all(p), greater());
-
-    debug(e)
-    debug(p)
-    
-    int ans = 0;
-    for(int i = 0; i < min(n, m); i++){
-        
-        if(e[i] - p[i] <= 0)    ans += e[i];
-        else                    ans += p[i];
+    int n;  cin >> n;
+    vector<int> v(n);
+    map<int, pair<int, int> > mp;
+    for(int i = 0; i < n; i++){
+        cin >> v[i];
+        if(!mp.count(v[i])) mp[v[i]] = {i, i};
+        else{
+            int k = i - mp[v[i]].ff;
+            k /= 2;
+            mp[v[i]].ff = i;
+            mp[v[i]].ss = max(mp[v[i]].ss, k);
+        }
     }
 
-    cout << ans << nline;
-    
+    for(auto it: mp){
+        int k = (n-1) - it.ss.ff;
+        mp[it.ff].ss =  max(it.ss.ss, k);
+    }
+
+    int a = 0, b = INT_MAX;
+    for(auto it: mp){
+        if(it.ss.ss < b){
+            b = it.ss.ss;
+            a = it.ff;
+        }
+    }
+
+    cout << a << " " << b << nline;
+
 }
 
 signed main() {
@@ -83,22 +92,3 @@ signed main() {
     while(t--){     solve(); }
     return 0;
 }
-
-class Solution {
-
-public:
-
-    int maxSubArray(vector<int>& nums) {
-        int ans = INT_MIN, sum = 0;
-
-        for(int i = 0; i < nums.size(); i++){
-            sum += nums[i];
-
-            ans = max(ans, sum);
-
-            if(sum < 0) sum = 0;
-
-        }
-        return ans;
-    }
-};

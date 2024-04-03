@@ -50,25 +50,22 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int n, m, h;    cin >> n >> m >> h;
-    vector<int> e(n), p(m);
-    for(int i = 0; i < n; i++)  cin >> e[i];
-    for(int i = 0; i < m; i++)  cin >> p[i], p[i] *= h;
-
-    sort(all(e), greater());
-    sort(all(p), greater());
-
-    debug(e)
-    debug(p)
-    
-    int ans = 0;
-    for(int i = 0; i < min(n, m); i++){
-        
-        if(e[i] - p[i] <= 0)    ans += e[i];
-        else                    ans += p[i];
+    int n;  cin >> n;
+    string s;   cin >> s;
+    int fast = n-3;
+    bool ist = false;
+    for(int i = n-3; i >= 0; i--){
+        if(s[i] == '1') fast = i, ist = true;
     }
 
-    cout << ans << nline;
+    if(ist){
+        for(int i = 0; i < n; i++){
+            if(i == fast)   cout << "1";
+            else            cout << "0";
+        }cout << nline;
+    }
+    else  cout << s << nline;
+    
     
 }
 
@@ -83,22 +80,3 @@ signed main() {
     while(t--){     solve(); }
     return 0;
 }
-
-class Solution {
-
-public:
-
-    int maxSubArray(vector<int>& nums) {
-        int ans = INT_MIN, sum = 0;
-
-        for(int i = 0; i < nums.size(); i++){
-            sum += nums[i];
-
-            ans = max(ans, sum);
-
-            if(sum < 0) sum = 0;
-
-        }
-        return ans;
-    }
-};
