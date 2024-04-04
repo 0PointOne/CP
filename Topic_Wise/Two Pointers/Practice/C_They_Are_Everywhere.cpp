@@ -47,47 +47,33 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
-int low(vector<int> &v, int n){
-    int s = 0, e = v.size();
-
-    int mid = s + (e - s) / 2;
-    while(s < e){
-        if(v[mid] >= n) e = mid;
-        else            s = mid + 1;
-        mid = s + (e - s) / 2;
-    }
-    return s;
-}
 
 void solve(){
 
-    int n, m;   cin >> n >> m;
-    vector<int> a(n), b(m);
-    for(int i = 0; i < n; i++)  cin >> a[i];
-    for(int i = 0; i < m; i++)  cin >> b[i];
-    int ans = 0;
-    for(int i = 0; i < n; i++){
-        int r = low(b, a[i]);
+    int n;  cin >> n;
+    string s;   cin >> s;
 
-        int l = r - 1;
+    map<char, int> cnt;
+    for(int i = 0; i < n; i++)  cnt[s[i]]++;
 
-        int mn = INT_MAX;
-        if(r < m){
-            assert(b[r] >= a[i]);
-            mn = min(mn, b[r] - a[i]);
+    int sz = cnt.size();
+    debug(sz)
+
+    map<char, int> mp;
+    int l = 0, r = 0, ans = INT_MAX;
+    while(r < n){
+        mp[s[r]]++;
+
+        while(l <= r && mp.size() == sz){
+            ans = min(ans, r - l + 1);
+            mp[s[l]]--;
+            if(!mp[s[l]])   mp.erase(s[l]);
+            l++;
         }
-
-        if(l >= 0){
-            assert(b[l] <= a[i]);
-            mn = min(mn, a[i] - b[l]);
-        }
-
-        ans = max(ans, mn);
+        r++;
     }
     cout << ans << nline;
 }
-    
-
 
 signed main() {
 #ifndef ONLINE_JUDGE

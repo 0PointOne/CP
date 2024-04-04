@@ -47,47 +47,46 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
-int low(vector<int> &v, int n){
-    int s = 0, e = v.size();
-
-    int mid = s + (e - s) / 2;
-    while(s < e){
-        if(v[mid] >= n) e = mid;
-        else            s = mid + 1;
-        mid = s + (e - s) / 2;
-    }
-    return s;
-}
+const int N = 1e5;
+vector<int> fac[N+1];
 
 void solve(){
 
     int n, m;   cin >> n >> m;
-    vector<int> a(n), b(m);
-    for(int i = 0; i < n; i++)  cin >> a[i];
-    for(int i = 0; i < m; i++)  cin >> b[i];
-    int ans = 0;
-    for(int i = 0; i < n; i++){
-        int r = low(b, a[i]);
+    vector<int> v(n), cnt(m+1, 0);
 
-        int l = r - 1;
+    input_v(v);
+    sort(all(v));
 
-        int mn = INT_MAX;
-        if(r < m){
-            assert(b[r] >= a[i]);
-            mn = min(mn, b[r] - a[i]);
+    int s = 0, r = 0, k = 0;
+    int ans = INT_MAX;
+    while(s < n){
+
+        while(r < n && k < m){
+
+            for(auto &it: fac[v[r]]){
+                if(it > m)      break;
+
+                cnt[it]++;
+                if(cnt[it] == 1)    k++;
+            }
+            r++;
         }
 
-        if(l >= 0){
-            assert(b[l] <= a[i]);
-            mn = min(mn, a[i] - b[l]);
-        }
+        if(k == m)  ans = min(ans, v[r-1] - v[s]);
+        for(auto &it: fac[v[s]]){
 
-        ans = max(ans, mn);
+            if(it > m)  break;
+
+            cnt[it]--;
+
+            if(cnt[it] == 0)    k--;
+        }
+        s++;
     }
-    cout << ans << nline;
-}
-    
 
+    cout << (ans == INT_MAX ?   -1  : ans ) << nline;
+}
 
 signed main() {
 #ifndef ONLINE_JUDGE
@@ -96,7 +95,14 @@ signed main() {
 
     fastio();
     int t = 1;   	
-    // cin >> t;
+    cin >> t;
+
+    for(int i = 1; i <= N; i++){
+        for(int j = i; j <= N; j+= i){
+            fac[j].push_back(i);
+        }
+    }
+
     while(t--){     solve(); }
     return 0;
 }

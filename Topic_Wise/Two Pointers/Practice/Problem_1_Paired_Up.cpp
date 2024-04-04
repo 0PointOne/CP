@@ -47,52 +47,60 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
-int low(vector<int> &v, int n){
-    int s = 0, e = v.size();
-
-    int mid = s + (e - s) / 2;
-    while(s < e){
-        if(v[mid] >= n) e = mid;
-        else            s = mid + 1;
-        mid = s + (e - s) / 2;
-    }
-    return s;
+bool cmp(pair<int, int> &a, pair<int, int> &b){
+    return a.ss < b.ss;
 }
 
 void solve(){
 
-    int n, m;   cin >> n >> m;
-    vector<int> a(n), b(m);
-    for(int i = 0; i < n; i++)  cin >> a[i];
-    for(int i = 0; i < m; i++)  cin >> b[i];
+    int n;  cin >> n;
+    vector<pair<int, int> > pr(n);
+    for(int i = 0; i < n; i++)  cin >> pr[i].ff >> pr[i].ss;
+
+    sort(pr.begin(), pr.end(), cmp);
+    // debug(pr)
+
+    int s = 0, e = n-1;
     int ans = 0;
-    for(int i = 0; i < n; i++){
-        int r = low(b, a[i]);
 
-        int l = r - 1;
-
-        int mn = INT_MAX;
-        if(r < m){
-            assert(b[r] >= a[i]);
-            mn = min(mn, b[r] - a[i]);
+    // int f = 0;
+    while(s < e){
+        // debug(s)
+        // debug(e)
+        // debug(pr[s].ss + pr[e].ss)
+        if(pr[s].ff < pr[e].ff){
+            ans = max(ans, pr[s].ss + pr[e].ss);
+            pr[e].ff -= pr[s].ff;
+            pr[s].ff = 0;
+            s++;
         }
 
-        if(l >= 0){
-            assert(b[l] <= a[i]);
-            mn = min(mn, a[i] - b[l]);
+        else if(pr[s].ff > pr[e].ff){
+            ans = max(ans, pr[s].ss + pr[e].ss);
+            pr[s].ff -= pr[e].ff;
+            pr[e].ff = 0;
+            e--;
         }
-
-        ans = max(ans, mn);
+        else{
+            ans = max(ans, pr[s].ss + pr[e].ss);
+            pr[s].ff = 0;
+            pr[e].ff = 0;
+            s++;
+            e--;
+        }
     }
-    cout << ans << nline;
-}
-    
 
+    if(s == e && pr[s].ff > 0)  ans = max(ans, pr[s].ss + pr[s].ss);
+    cout << ans << nline;
+    
+}
 
 signed main() {
 #ifndef ONLINE_JUDGE
     freopen("Error.txt", "w", stderr);
 #endif
+    freopen("pairup.in", "r", stdin);
+    freopen("pairup.out", "w", stdout);
 
     fastio();
     int t = 1;   	
