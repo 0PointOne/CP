@@ -47,17 +47,20 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
+bool is_prime(int n){
+    if(n <= 1)  return false;
+    for(int i = 2; i <= n/2; i++){
+        if(n % i == 0)  return false;
+    }
+    return true;
+}
 
 void solve(){
 
-    int xr, yr, xw, yw; cin >> xr >> yr >> xw >> yw;
+    int n;  cin >> n;
+    while(is_prime(n))  n++;
+    cout << n << nline;
     
-    double r = (xr * xr) + (yr * yr);
-    double w = (xw * xw) + (yw * yw);
-
-    if(r < w)   cout << "Russo";
-    else if(r > w) cout << "Wil";
-    else           cout << "Empate";
 }
 
 signed main() {

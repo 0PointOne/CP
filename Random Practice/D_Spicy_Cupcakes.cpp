@@ -50,14 +50,22 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int xr, yr, xw, yw; cin >> xr >> yr >> xw >> yw;
-    
-    double r = (xr * xr) + (yr * yr);
-    double w = (xw * xw) + (yw * yw);
+    int n, a, b;    cin >> n >> a >> b;
+    vector<int> v(n);
+    input_v(v);
+    if(a < 0){
+        sort(v.begin(), v.end(), greater());
+    }
+    else{
+        sort(all(v));
+    }
 
-    if(r < w)   cout << "Russo";
-    else if(r > w) cout << "Wil";
-    else           cout << "Empate";
+    int ans = 0;
+    for(int i = 0; i < n; i++){
+        ans += (i + 1) * (a * v[i] + b);
+    }
+    cout << ans << nline;
+    
 }
 
 signed main() {

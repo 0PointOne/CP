@@ -16,9 +16,6 @@ using namespace std;
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-#define print_v(v) for(auto it : v) cout << it << " "; cout << nline;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << nline;
-#define input_v for(auto &it : v)   cin >> it;
 
 typedef unsigned long long ull;
 typedef long double lld;
@@ -50,14 +47,44 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int xr, yr, xw, yw; cin >> xr >> yr >> xw >> yw;
-    
-    double r = (xr * xr) + (yr * yr);
-    double w = (xw * xw) + (yw * yw);
+    int n, c, d;  cin >> n >> c >> d;
+    vector<int> v(n * n);
 
-    if(r < w)   cout << "Russo";
-    else if(r > w) cout << "Wil";
-    else           cout << "Empate";
+    int mn = INT_MAX;
+    for(int i = 0; i < n * n; i++){
+        cin >> v[i];
+        mn = min(mn, v[i]);
+    }   
+
+    
+    vector<vector<int> > ans(n, vector<int>(n));
+    ans[0][0] = mn;
+    for(int i = 1; i < n; i++){
+        ans[0][i] = ans[0][i-1] + d;
+    }
+    
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j < n; j++){
+            ans[i][j] = ans[i-1][j] + c;
+        }
+    }
+
+    vector<int> tmp;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            tmp.push_back(ans[i][j]);
+        }
+    }
+
+    sort(all(v));
+    sort(all(tmp));
+
+    cout << (v == tmp  ? "YES"  :   "NO") << endl;
+
+    // cout << "YES" << nline;
+
+    debug(tmp)
+    debug(v)
 }
 
 signed main() {
@@ -67,7 +94,7 @@ signed main() {
 
     fastio();
     int t = 1;   	
-    // cin >> t;
+    cin >> t;
     while(t--){     solve(); }
     return 0;
 }

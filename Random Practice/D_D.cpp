@@ -16,9 +16,6 @@ using namespace std;
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
-#define print_v(v) for(auto it : v) cout << it << " "; cout << nline;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << nline;
-#define input_v for(auto &it : v)   cin >> it;
 
 typedef unsigned long long ull;
 typedef long double lld;
@@ -50,14 +47,23 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int xr, yr, xw, yw; cin >> xr >> yr >> xw >> yw;
+    int n;  cin >> n;
+    vector<int> v(n), pf(n);
+    cin >> v[0];
+    pf[0] = v[0];
+    for(int i = 1; i < n; i++){
+        cin >> v[i];
+        pf[i] = pf[i-1] + v[i];
+    }
     
-    double r = (xr * xr) + (yr * yr);
-    double w = (xw * xw) + (yw * yw);
+    debug(v);
+    debug(pf)
 
-    if(r < w)   cout << "Russo";
-    else if(r > w) cout << "Wil";
-    else           cout << "Empate";
+    int ans = 0;
+    for(int i = 0; i < n; i++){
+        ans += v[i] * (pf[n-1] - pf[i]);
+    }
+    cout << ans << nline;
 }
 
 signed main() {
