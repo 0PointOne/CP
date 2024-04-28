@@ -1,23 +1,48 @@
 v [ 1 2 3 4 7 9 100 ]
-tra 1
-"->" ->
-cnt 1
-tra 2
-"->" ->
-cnt 2
-tra 3
-"->" ->
-cnt 3
-tra 4
-"->" ->
-cnt 4
-tra 7
-"->" ->
-cnt 5
-tra 9
-"->" ->
-cnt 6
-tra 100
-"->" ->
-cnt 7
-tra 100
+"Alice:" Alice:
+k 1
+k 2
+k 3
+k 6
+k 8
+k 99
+"\n" 
+
+"Bob:" Bob:
+k 1
+k 2
+k 5
+k 7
+k 98
+"\n" 
+
+"Alice:" Alice:
+k 1
+k 4
+k 6
+k 97
+"\n" 
+
+"Bob:" Bob:
+k 3
+k 5
+k 96
+"\n" 
+
+"Alice:" Alice:
+k 2
+k 93
+"\n" 
+
+"Bob:" Bob:
+k 1
+k 92
+"\n" 
+
+"Alice:" Alice:
+k 91
+"\n" 
+
+"Bob:" Bob:
+"\n" 
+
