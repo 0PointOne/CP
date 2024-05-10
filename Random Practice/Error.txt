@@ -1,2 +1,0 @@
-max(a, b) 6
-max(a, b) 3
