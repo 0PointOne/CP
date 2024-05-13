@@ -48,22 +48,20 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 
 void solve(){
 
-    int n, q;   cin >> n >> q;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++)  cin >> v[i];
-    sort(all(v));
-
-    map<int, int> mp;
-    int cnt = 0;
-    for(int i = 0; i < n-2; i++){
-        cnt += ((n - i - 2) * (n - i - 1)) / 2;
-        mp[cnt] = v[i];
+    int n;      cin >> n;
+    vector<int> v;
+    if(n & 1){
+        v.push_back(3);
+        n -= 3;
+    }
+    
+    while(n){
+        v.pb(2);
+        n -= 2;
     }
 
-    while(q--){
-        int key;    cin >> key;
-        cout << mp.lower_bound(key)->ss << endl;
-    }
+    cout << sz(v) << nline;
+    for(int i = 0; i < sz(v); i++)  cout << v[i] << " ";
     
 }
 
@@ -74,7 +72,7 @@ signed main() {
 
     fastio();
     int t = 1;   	
-    cin >> t;
+    // cin >> t;
     while(t--){     solve(); }
     return 0;
 }
