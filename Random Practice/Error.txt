@@ -1,0 +1,10 @@
+sum 1
+cnt[sum] 0
+sum 0
+cnt[sum] 1
+sum 1
+cnt[sum] 1
+sum 0
+cnt[sum] 2
+sum 1
+cnt[sum] 2
