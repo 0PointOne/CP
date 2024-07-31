@@ -7,14 +7,13 @@ void solve(){
 
     int n, k;   cin >> n >> k;
     
-    // int cnt = 0;
-    // while(n > 1){
-    //     cnt++;
-    //     n -= (k - 1);
-    // }
+    int cnt = 0;
+    while(n > 1){
+        cnt++;
+        n -= (k - 1);
+    }
 
-    // cout << cnt << "\n";
-    cout << (n + k - 3) / (k -1) << "\n";
+    cout << cnt << "\n";
 
 }
 
