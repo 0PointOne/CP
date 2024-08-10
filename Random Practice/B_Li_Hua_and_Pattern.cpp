@@ -30,7 +30,7 @@ void solve(){
     }
 
     if(cnt/2 <= k && ((n & 1) || (k - (cnt / 2)) % 2 == 0))  cout << "YES" << "\n";
-    else                                               cout << "NO" <<  "\n";
+    else   cout << "NO" <<  "\n";
 }
 
 signed main(){
