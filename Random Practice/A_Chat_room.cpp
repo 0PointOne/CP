@@ -5,8 +5,17 @@ using namespace std;
 
 void solve(){
 
-    double n, m, k;    cin >> n >> m >> k;
-    cout << (int)(ceil(n / k) * ceil(m / k)) << "\n";
+    string s;   cin >> s;
+    string a = "hello";
+    int j = 0;
+    for(int i = 0; i < s.size(); i++){
+        if(a[j] == s[i]) j++;
+        if(j == 5){
+            cout << "YES";
+            return;
+        }
+    }
+    cout << "NO";
 }
 
 signed main(){

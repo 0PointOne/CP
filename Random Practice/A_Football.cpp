@@ -5,8 +5,18 @@ using namespace std;
 
 void solve(){
 
-    double n, m, k;    cin >> n >> m >> k;
-    cout << (int)(ceil(n / k) * ceil(m / k)) << "\n";
+    string s;   cin >> s;
+    int cnt = 1;
+    for(int i = 0; i < s.size()-1; i++){
+        if(s[i] == s[i+1]) cnt++;
+        else   cnt = 1;
+        if(cnt >= 7){
+            cout << "YES";
+            return;
+        }
+    }
+    cout << "NO";
+
 }
 
 signed main(){
