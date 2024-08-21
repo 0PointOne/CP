@@ -10,10 +10,10 @@ void solve(){
     mx = max(mx, a + b + c);
     mx = max(mx, (a + b) * c);
     mx = max(mx, a + (b * c));
-    mx = max(mx, a * (b + c));
     mx = max(mx, a * b * c);
+    mx = max(mx, a * (b + c));
     mx = max(mx, (a * b) + c);
-    
+
     cout << mx << "\n";
 }
 
