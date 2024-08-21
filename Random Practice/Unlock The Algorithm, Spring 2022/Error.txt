@@ -1,4 +1,0 @@
-cnt 9
-cnt 18
-cnt 45
-cnt 90
