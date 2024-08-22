@@ -13,6 +13,7 @@ void solve(){
             if(s[l] != s[r]) a += s[l++];
             else l++, r--;
         }
+        
         reverse(a.begin(), a.end());
         string temp = s + a;
         l = 0, r = temp.size()-1;
