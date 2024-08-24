@@ -29,8 +29,7 @@ void createZArray(string concatenated, vector<int> &z){
         }
     }
 }
-int main()
-{
+int main(){
 
     string pat, text;
     cin >> text >> pat;
