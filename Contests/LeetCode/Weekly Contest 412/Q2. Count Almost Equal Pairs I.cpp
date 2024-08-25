@@ -3,65 +3,44 @@
 #define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 using namespace std;
 
-int countPairs(vector<int>& num) {
-    int n = num.size();
-    vector<string> v(num.size());
-    for(int i = 0; i < n; i++){
-        string s = to_string(num[i]);
-        v[i] = s;
-    } 
-    map<pair<int,int>, int> vis;
-    auto check = [&](int i, int x){
-        int cnt = 0;
-        int j = i;
-        for(i = 0; i < n; i++){
-            if((num[i] == x) && (i != j) && vis[{i, j}] == 0){
-                cnt++, vis[{min(i, j), max(i, j)}]++;
-            }
-        }
-        return cnt;
-    };
+bool isEqu(int x, int y) {
 
-    int cnt = 0;
-    for(int i = 0; i < n; i++){
-        
-        if(v[i].size() == 1){
-            int x = 0;
-            int j = 0;
-            while(j < v[i].size()){
-                x = x * 10 + (v[i][j] - '0');
-                j++;
-            }
-            cnt += check(i, x);
-            continue;
-        }
-        map<int,int> mp;
-        int x = 0;
-        int j = 0;
-        while(j < v[i].size()){
-            x = x * 10 + (v[i][j] - '0');
-            j++;
-        }
-        if(!mp[x]) cnt += check(i, x), mp[x]++;
-        for(int k = 0; k < v[i].size(); k++){
-            for(int j = k+1; j < v[i].size(); j++){
-                if(k != j){
-                    swap(v[i][k], v[i][j]);
-                    int x = 0;
-                    int j = 0;
-                    while(j < v[i].size()){
-                        x = x * 10 + (v[i][j] - '0');
-                        j++;
-                    }
-                    if(!mp[x]) cnt += check(i, x), mp[x]++;
-                    swap(v[i][k], v[i][j]);
-                }
-            }
-        }
-        mp.clear();
+    string a = to_string(x), b = to_string(y);
+    
+    while(a.length() < b.length()) a = "0" + a;
+    while(b.length() < a.length()) b = "0" + b;
 
+    int diff = 0;
+    vector<int> idx;
+    
+    for(int i = 0; i < a.length(); i++){
+        if(a[i] != b[i]){
+            diff++;
+            idx.push_back(i);
+            if(diff > 2)  return false;
+        }
     }
-    return cnt;
+    if(diff == 0) return true;
+
+    if(diff == 2){
+        string c = a;
+        int k = idx[0], l = idx[1];
+        swap(c[k], c[l]);
+        return c == b;
+    }
+    return false;
+}
+
+int countPairs(vector<int>& nums) {
+    int n = nums.size();
+    int ans = 0;
+    
+    for(int i = 0; i < n; i++){
+        for(int j = i + 1; j < n; j++){
+            if(isEqu(nums[i], nums[j])) ans++;
+        }
+    }
+    return ans;
 }
 
 void solve(){
