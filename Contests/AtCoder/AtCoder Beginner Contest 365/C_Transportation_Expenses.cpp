@@ -11,6 +11,7 @@ void solve(){
 
     int sum = 0;
     for(int i = 0; i < n; i++) sum += v[i];
+    
     if(sum <= m){
         cout << "infinite";
         return;

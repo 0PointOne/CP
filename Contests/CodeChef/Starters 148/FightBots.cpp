@@ -5,7 +5,6 @@ using namespace std;
 
 bool sol(int x, int y, vector<tuple<int, int, int>>& v, int sec, map<tuple<int, int, int>, int>& dp){
 
-
     if(v.size()-1-sec < (abs(get<1>(v.back()) - x) + abs(get<2>(v.back()) - y)) ) return false;
     if(x == get<1>(v[sec]) && y == get<2>(v[sec])){
         return true;

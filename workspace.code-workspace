@@ -1,7 +1,24 @@
 {
-    "folders": [
-        {
-            "path": "."
+    "folders": [],
+    "settings": {
+        "files.associations": {
+            "chrono": "cpp",
+            "random": "cpp",
+            "limits": "cpp",
+            "valarray": "cpp",
+            "iostream": "cpp",
+            "string": "cpp",
+            "format": "cpp",
+            "array": "cpp",
+            "bitset": "cpp",
+            "string_view": "cpp",
+            "initializer_list": "cpp",
+            "ranges": "cpp",
+            "span": "cpp",
+            "stacktrace": "cpp",
+            "regex": "cpp",
+            "ratio": "cpp",
+            "vector": "cpp"
         }
-    ]
+    }
 }
