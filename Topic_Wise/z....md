@@ -3,7 +3,7 @@
 1. **STL**
 2. **Palindrome, perfect, Armstrong**
 3. **Simple Hashing and Frequency Counting**
-4. Prefix Sum(1D and 2D)
+4. **Prefix Sum(1D and 2D)** 
 5. **Sliding Window technique**
 
 ## Number Theory:
