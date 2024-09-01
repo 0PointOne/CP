@@ -1,10 +1,10 @@
 # Topics:
-## **Basic**
-1. **STL**
-2. **Palindrome, perfect, Armstrong**
-3. **Simple Hashing and Frequency Counting**
-4. **Prefix Sum(1D and 2D)** 
-5. **Sliding Window technique**
+## - [X] Basic
+1. - [X] STL
+2. - [X] Palindrome, perfect, Armstrong 
+3. - [X] Simple Hashing and Frequency Counting 
+4. - [X] Prefix Sum(1D and 2D)
+5. - [X] Sliding Window technique
 
 ## Number Theory:
 1. - [x] Basic Number Theory
