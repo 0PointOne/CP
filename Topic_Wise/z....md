@@ -1,5 +1,5 @@
 # Topics:
-## - [X] Basic
+##  Basic
 1. - [X] STL
 2. - [X] Palindrome, perfect, Armstrong 
 3. - [X] Simple Hashing and Frequency Counting 
