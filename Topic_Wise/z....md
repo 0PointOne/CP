@@ -7,7 +7,7 @@
 5. **Sliding Window technique**
 
 ## Number Theory:
-1. - [] Basic Number Theory
+1. - [x] Basic Number Theory
 7. - [] Tougher Version of Number Theory
 8. Two pointer
 9. Bit Manipulation
