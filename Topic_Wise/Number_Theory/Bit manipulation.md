@@ -1,6 +1,7 @@
-# Bit manipulation
+# Bit manipulation and Bit Masking
 
-## **Check a number is even or odd:**    
+## **Check a number is even or odd:**   
+
 
 ```cpp
 if(x & 1)  cout << "ODD";
