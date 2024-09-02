@@ -1,7 +1,8 @@
-# Segment Tree Lazy
+#include<bits/stdc++.h>
+#define int long long int
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+using namespace std;
 
-### Code:
-```cpp
 const int N = 1e5 + 5;
 int v[N], tr[4*N], lazy[4*N];
 
@@ -46,4 +47,30 @@ int sum(int n, int l, int r, int a, int b){
     int mid = l + (r - l) / 2;
     return sum(2*n, l, mid, a, b) + sum(2*n+1, mid+1, r, a, b);
 }
-```
+
+void solve(){
+
+    int n, m;   cin >> n >> m;
+    build(1, 1, n);
+
+    while(m--){
+        int t;  cin >> t;
+        if(t == 1){
+            int l, r, num;    cin >> l >> r >> num;
+            update(1, 1, n, l+1, r, num);
+        }
+        else{
+            int l;   cin >> l;
+            cout << sum(1, 1, n, l+1, l+1) << "\n";
+        }
+    }
+
+}
+
+signed main(){
+    fast;
+    int t = 1;
+    //cin >> t;
+    while(t--){solve();}
+    return 0;
+}
