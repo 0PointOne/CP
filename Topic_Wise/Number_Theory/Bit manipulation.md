@@ -267,3 +267,7 @@ int main(){
 }
 ```
 #### TC O(2^n * n);
+
+
+## Some building function:
+### 
