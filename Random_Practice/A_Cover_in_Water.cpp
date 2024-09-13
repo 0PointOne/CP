@@ -7,16 +7,20 @@ void solve(){
 
     int n;  cin >> n;
     string s;   cin >> s;
-    bool isPre = false;
-    int empty = 0;
+    int cnt = 0, mx = 0, sum = 0;
+
     for(int i = 0; i < n; i++){
-        if(i > 0 && i < n-1 && s[i-1] == '.' && s[i] == '.' && s[i+1] == '.'){
-            cout << 2 << "\n";
-            return;
+        if(s[i] == '.') cnt++, sum++;
+        else{
+            mx = max(mx, cnt);
+            cnt = 0;
         }
-        if(s[i] == '.') empty++;
     }
-    cout << empty << "\n";
+    mx = max(mx, cnt);
+
+    if(mx >= 3) cout << 2 << "\n";
+    else        cout << sum << "\n";
+
 }
 
 signed main(){

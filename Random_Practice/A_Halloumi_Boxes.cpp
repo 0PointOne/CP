@@ -5,13 +5,17 @@ using namespace std;
 
 void solve(){
 
-    int n, k;   cin >> n >> k;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++)  cin >> v[i];
-    vector<int> a = v;
-    sort(a.begin(), a.end());
-    if(k == 1 && a != v) cout << "NO" << "\n";
-    else cout << "YES" << "\n";
+    int n, x;  cin >> n >> x;
+    vector<int> v(n), copy(n);
+    for(int i = 0; i < n; i++) cin >> v[i];
+
+    if(x == 1){
+        copy = v;
+        sort(copy.begin(), copy.end());
+        cout << (copy == v  ?  "YES"  : "NO") << "\n";
+    }
+    else cout << "YES\n";
+
 }
 
 signed main(){

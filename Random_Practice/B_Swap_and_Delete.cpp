@@ -1,76 +1,37 @@
 #include<bits/stdc++.h>
-#define endl "\n"
-#define ll long long
-#define s(a, b) a+b
-#define v_all v.begin(), v.end()
-#define mod 100000007
-#define fast_io ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-#define print_v(v) for(auto it : v) cout << it << " "; cout << endl;
-#define print_v_pair(v) for(auto it: v) cout << it.first << " " << it.second << endl;
-#define input_v for(auto &it : v)   cin >> it;
+#define int long long int
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 using namespace std;
 
-void solve1(){
-    string str;   cin >> str;
-    vector<int> cnt(2, 0);
-
-    for(int i = 0; i < str.size(); i++){
-        cnt[str[i] - '0']++;
-    }  
-
-    for(int i = 0; i <= str.size(); i++){
-
-        if(i == str.size() || cnt[1 - (str[i] - '0')] == 0){
-            cout << str.size() - i << endl;
-            break;
-        }
-
-        cnt[1 - (str[i] - '0')]--;
-    }
-
-    return;
-    
-}
-
 void solve(){
-    
-    string str;   cin >> str;
-    vector<int> zero, one;
 
-    for(int i = 0;  i < str.size(); i++){
-        if(str[i] == '0')   zero.push_back(i);
-        else                one.push_back(i);
+    string s;   cin >> s;
+
+    string t = s;
+
+    vector<int> zeroIdx, oneIdx;
+    for(int i = 0; i < s.size(); i++){
+        if(s[i] == '0') zeroIdx.push_back(i);
+        else            oneIdx.push_back(i);
     }
 
-    string ans_str = str;
-    int i = 0, j = 0;
-    while(i < zero.size() && j < one.size()){
-        swap(ans_str[zero[i++]], ans_str[one[j++]]);
+    for(int i = 0; i < min(zeroIdx.size(), oneIdx.size()); i++){
+        swap(s[zeroIdx[i]], s[oneIdx[i]]);
     }
-    
 
-    int ans = 0;
-    j = 0;
-    for(int i = 0; i < str.size(); i++){
-        if(str[j] == ans_str[i]){
-            ans++;
-        }
-        else{
-            j++;
+    for(int i = 0; i < s.size(); i++){
+        if(s[i] == t[i]){
+            cout << s.size()-i << "\n";
+            return;
         }
     }
-    cout << ans << endl;
+    cout << 0 << "\n";
 }
 
-int main(){
-    fast_io;
-
+signed main(){
+    fast;
     int t = 1;
     cin >> t;
-    while(t--){
-        // solve();
-        solve1();
-    }
-
+    while(t--){solve();}
     return 0;
 }

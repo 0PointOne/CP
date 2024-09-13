@@ -5,16 +5,15 @@ using namespace std;
 
 void solve(){
 
-    int n, k;   cin >> n >> k;
+    int n, dis; cin >> n >> dis;
     int mn = 0;
-    int cur = 0;
-    int x;
+    int k = 0;
     for(int i = 0; i < n; i++){
-        cin >> x;
-        mn = max(mn, x - cur);
-        cur = x;
+        int x;  cin >> x;
+        mn = max(mn, x - k);
+        k = x;
     }
-    mn = max(mn, 2 * (k - x));
+    mn = max(mn, (dis - k) * 2);
     cout << mn << "\n";
 }
 
