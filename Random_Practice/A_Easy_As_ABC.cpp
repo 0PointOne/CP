@@ -16,7 +16,7 @@ void solve(){
                     for(int i3 = 0; i3 < 3; i3++){
                         for(int j3 = 0; j3 < 3; j3++){
 
-                            if((i1 != i2 || j1 != j2) && (abs(i1 - i2) < 2 && abs(j1-j2) < 2) 
+                            if((i1 != i2 || j1 != j2) && (abs(i1-i2) < 2 && abs(j1-j2) < 2) 
                             && (i3 != i2 || j3 != j2) && (abs(i3-i2) < 2 && abs(j3-j2) <2) 
                             && (i1 != i3 || j1 != j3)){ 
                                 string temp = "";
