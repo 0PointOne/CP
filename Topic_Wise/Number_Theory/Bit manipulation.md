@@ -85,6 +85,18 @@ int main(){
 <br><br>
 
 
+### Uppercase to lowercase && lowercase to uppercase:
+
+```cpp
+char ch = 'A';
+char smallCh = ch | ' ';
+cout << smallCh << "\n";
+
+ch = 'z';
+char capitalCh = ch & '_';
+cout << capitalCh << "\n";
+```
+
 ## **Kth bit set / unset?:**
 
 ```cpp
@@ -234,7 +246,7 @@ if(n % 4 == 1)  cout << 1 << endl;
 ```
 
 
-##### 3)
+##### 3
 ```cpp
 (x & a) == (x & b);
 (x | a) == (x | b);
