@@ -10,7 +10,7 @@
 1. Basic Number Theory
 7. Tougher Version of Number Theory
 8. Two pointer
-9. Bit Manipulation
+9. ***Bit Manipulation***
 10. Number of Subarrays with XOR as zero.
 11. Greedy Algorithm
 12. Kadane's Algorithm
