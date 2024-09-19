@@ -1,28 +1,28 @@
 # Topics:
 ## **Basic**
-1. **STL**
-2. **Palindrome, perfect, Armstrong**
-3. **Simple Hashing and Frequency Counting**
-4. **Prefix Sum(1D and 2D)** 
-5. **Sliding Window technique**
+1. ***STL***
+2. ***Palindrome, perfect, Armstrong***
+3. ***Simple Hashing and Frequency Counting***
+4. ***Prefix Sum(1D and 2D)*** 
+5. ***Sliding Window techniques***
 
 ## Number Theory:
-1. - [] Basic Number Theory
-7. - [] Tougher Version of Number Theory
-8. - [] Two pointer
-9. - [] Bit Manipulation
-10. - [] Number of Subarrays with XOR as zero.
-11. - [] Greedy Algorithm
-12. - [] Kadane's Algorithm
+1. Basic Number Theory
+7. Tougher Version of Number Theory
+8. Two pointer
+9. Bit Manipulation
+10. Number of Subarrays with XOR as zero.
+11. Greedy Algorithm
+12. Kadane's Algorithm
 
 ## After Recursion
-1. - [] Recursion
-12. - [] Divide and Conquer
-15. - [] Parenthesis
-16. - [] Largest rectangle area in histogram
-17. - [] Heap(priority Queue)
-18. - [] Rolling Hash Function
-19. - [] Rabin Karp Algorithm
+1. Recursion
+12.  Divide and Conquer
+15. Parenthesis
+16. Largest rectangle area in histogram
+17. Heap(priority Queue)
+18. Rolling Hash Function
+19. Rabin Karp Algorithm
 20. Prefix Function
 21. KMP Algorithm
 22. Z-function
