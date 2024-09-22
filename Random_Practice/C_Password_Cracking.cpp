@@ -36,11 +36,18 @@ void solve(){
             if(i == 0){
                 string ans(n, '1');
                 cout << "! " << ans << "\n";
+                cout.flush();
                 return;
             }
 
             (left_not  ?  temp[0] = '1' : temp[temp.size()-1] = '1');
 
+            if(!left_not && s.size() == n-1){
+                s = temp;
+                s[n-1] = '1';
+                break;
+            }
+            
             cout << "? " << temp << "\n";
             cout.flush();
 
