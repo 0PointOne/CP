@@ -5,16 +5,18 @@ using namespace std;
 
 void solve(){
 
-    int a, b, n;      cin >> a >> b >> n;
-    
-    int sum = 0;
+    int mx, intTime, n; cin >> mx >> intTime >> n;
+
+    int ans = 0, b = intTime;
     for(int i = 0; i < n; i++){
-        sum += b - 1;
-        int x;  cin >> x;
-        b = min(a, 1 + x);
+
+        ans += (b - 1);
+        int t;  cin >> t;
+        b = min(mx, t + 1);
     }
-    sum += b;
-    cout << sum << "\n";
+    ans += b;
+
+    cout << ans << "\n";
 
 }
 
