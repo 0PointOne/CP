@@ -113,47 +113,15 @@ signed main(){
 }
 ```
 
-### Sublime Built file:
+### Sublime Build file:
 
 ```cpp
 {
-    "cmd": ["g++", "-std=gnu++2a", "-o", "${file_path}/${file_base_name}", "${file}"],
-    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
-    "working_dir": "${file_path}",
-    "selector": "source.c, source.c++",
-    "quiet": true,
-
-    "variants": [
-        {
-            "name": "Run with C++20 (GNU)",
-            "cmd": ["bash", "-c", "g++ '${file}' -std=gnu++2a -o '${file_path}/${file_base_name}' && '${file_path}/${file_base_name}'"]
-        },
-        {
-            "name": "Run with C++20",
-            "cmd": ["bash", "-c", "g++ '${file}' -std=++2a -o '${file_path}/${file_base_name}' && '${file_path}/${file_base_name}'"]
-        },
-        {
-            "name": "Run with C++17",
-            "cmd": ["bash", "-c", "g++ '${file}' -std=c++17 -o '${file_path}/${file_base_name}' && '${file_path}/${file_base_name}'"]
-
-        },
-        {
-            "name": "Build without C++11",
-            "cmd": ["g++ '${file}' -o '${file_path}/${file_base_name}'"]
-        },
-
-        {
-            "name": "Run",
-            "cmd": ["bash", "-c", "g++ '${file}' -o '${file_path}/${file_base_name}' && '${file_path}/${file_base_name}'"]
-        }
-    ]
+    "cmd": ["g++.exe", "-std=c++17", "${file}",
+            "-o", "${file_base_name}.exe",
+            "&&", "${file_base_name}.exe<input.txt>output.txt"],
+    "shell":true,
+    "working_dir":"$file_path",
+    "selector":"source.cpp"
 }
 ```
-
-### Input & output file in code:
-
-```cpp
-#ifndef ONLINE_JUDGE
-  freopen("input.txt", "r", stdin);
-  freopen("output.txt", "w", stdout);
-#endif
