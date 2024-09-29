@@ -5,24 +5,29 @@ using namespace std;
 
 void solve(){
 
-    string s;   cin >> s;
-    int cnt = 1;
-    for(int i = 0; i < s.size()-1; i++){
-        if(s[i] == s[i+1]) cnt++;
-        else   cnt = 1;
-        if(cnt >= 7){
-            cout << "YES";
-            return;
+    int n;  cin >> n;
+    unordered_map<string, int > mp;
+    for(int i = 0; i < n; i++){
+        string s;   cin >> s;
+        mp[s]++;
+    }
+
+    int mx = 0;
+    string team = "";
+    for(auto it: mp){
+        if(it.second > mx){
+            mx = it.second;
+            team = it.first;
         }
     }
-    cout << "NO";
+    cout << team << "\n";
 
 }
 
 signed main(){
     fast;
     int t = 1;
-    // cin >> t;
+    //cin >> t;
     while(t--){solve();}
     return 0;
 }

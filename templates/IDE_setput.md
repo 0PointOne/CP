@@ -37,7 +37,7 @@ signed main(){
 }
 ]]></content>
   <tabTrigger>cp</tabTrigger>
-  <description>c++.cpp</description>
+  <description>source.c++</description>
 </snippet>
 ```
 ### Save it as "cp.sublime-snippet" file.
