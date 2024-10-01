@@ -14,5 +14,7 @@ if(n > 1) cnt[n]++;
 ```
 #### TC  O(sqrt(n));
 
-## Note:
-Every Non-Prime number smallest factor is non prime.
+### Note:
+~~~
+Every Non-Prime number's smallest factor is prime.
+~~~
