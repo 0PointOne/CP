@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ~~~
 (A / B)  %= (A / B) (A * B^{-1}) % M 
           = ((A % M) * (B^{-1} %M)) % M
@@ -24,6 +25,20 @@ In other words, when you multiply a and x and take the remainder after dividing 
 
 
 ### Conditions:
+=======
+## Introduction
+
+The **multiplicative inverse** of an integer a under modulo m is an integer x such that:
+
+#### a * x ≡ 1 (mod m)
+
+In other words, when you multiply a and x and take the remainder after dividing by m, you get 1.
+
+
+
+## Conditions:
+
+>>>>>>> 7191279de50cb9ab53d1839cbd95861ec043e791
 1. The multiplicative inverse exists if and only if a and m are coprime (i.e., gcd(a, m) = 1).
 2. If m is prime, the inverse can be found using **Fermat's Little Theorem**.
 
@@ -37,6 +52,7 @@ Fermat's Little Theorem states that if p is a prime number and a is an integer n
 
 From this, we can derive that: 
 #### a^(p-2) ≡ a^(-1) (mod p)
+<<<<<<< HEAD
 
 This means a^(p-2) is the multiplicative inverse of a modulo p.
 
@@ -51,9 +67,23 @@ This means a^(p-2) is the multiplicative inverse of a modulo p.
 
 ```cpp
 int binExp(int x, int p, int m){
+=======
+
+This means a^(p-2) is the multiplicative inverse of a modulo p.
+
+
+
+
+## C++ Code
+
+```cpp
+int power(int x, unsigned int y, int p){
+
+>>>>>>> 7191279de50cb9ab53d1839cbd95861ec043e791
     int res = 1;
     x %= p;
 
+<<<<<<< HEAD
     while(p){
         if(p & 1)  res = (res * x) % m;
 
@@ -124,6 +154,12 @@ int binExp(int x, int p, int m){
         x = (x * x) % m;
 
         p >>= 1;
+=======
+    while(y > 0){
+        if(y & 1)   res = (res * x) % p;
+        y >>= 1;
+        x = (x * x) % p;
+>>>>>>> 7191279de50cb9ab53d1839cbd95861ec043e791
     }
     return res;
 }
@@ -145,6 +181,7 @@ void solve(){
 
 }
 
+<<<<<<< HEAD
 signed main(){
     fast;
     int t = 1;
@@ -153,3 +190,27 @@ signed main(){
     return 0;
 }
 ```
+=======
+void solve(){
+    int a = 3, m = 11;
+
+    int inv = modInverse(a, m);
+    cout << "Multiplicative Inverse of " << a << " under modulo " << m << " is: " << inv << "\n";
+}
+```
+
+## Example
+
+Let's say we want to find the multiplicative inverse of \( 3 \) modulo \( 11 \):
+
+1. **Input**: a = 3, m = 11
+2. Using Fermat's Little Theorem:
+**Inverse = (3^(11-2) % 11 = 3^9) % 11 [Multiplicative Inverse of 3 under modulo 11 is: 4]**
+   
+
+
+## Conclusion
+
+- The multiplicative inverse under modulo exists if a and m are coprime.
+- For a prime m, use Fermat's Little Theorem to compute the inverse.
+>>>>>>> 7191279de50cb9ab53d1839cbd95861ec043e791
