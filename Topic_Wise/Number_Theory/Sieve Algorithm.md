@@ -88,7 +88,7 @@ signed main(){
     
     int q;  cin >> q;
     while(q){
-        int n;  cin >> n;
+        int num;  cin >> num;
 
         vector<int> prime_factor;
         while(num > 1){
