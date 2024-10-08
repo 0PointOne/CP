@@ -11,7 +11,7 @@ void solve(){
     for(int i = 0; i < n; i++)  cin >> v[i];
     sort(v.begin(), v.end());
 
-    map<int ,int> mp1;
+    unordered_map<int ,int> mp1;
     for(int i = 0; i < n; i++)   mp1[v[i]]++;
     
     unordered_map<int, int> mp;
