@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+#define int long long int
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+using namespace std;
+ 
+void solve(){
+ 
+    int n = 1e8;
+    
+    vector<bool> prime(n+1, true);
+    prime[0] = prime[1] = false;
+ 
+    for(int i = 2; i * i <= n; i++){
+        if(prime[i]){
+            for(int j = i * i; j <= n; j += i)  prime[j] = false;
+        }
+    }
+    
+    int cnt = 0;
+    for(int i = 2; i <= n; i++){
+        if(prime[i]){
+            cnt++;
+            if(cnt % 100 == 1) cout << i << "\n";
+        }
+    }
+
+  
+}
+ 
+signed main(){
+    fast;
+    int t = 1;
+    //cin >> t;
+    while(t--){solve();}
+    return 0;
+}
