@@ -109,11 +109,11 @@ signed main(){
 ## Divisors:
 ```cpp
 const int N = 1e5 + 5;
-vector<int> divisors[N];
+vector<int> divisors[N + 1];
 
 void solve(){
-    for(int i = 1; i < N; i++){
-        for(int j = i; j < N; j += i){
+    for(int i = 1; i <= N; i++){
+        for(int j = i; j <= N; j += i){
             divisors[j].push_back(i);
         }
     }
