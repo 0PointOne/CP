@@ -1,5 +1,6 @@
 # [MMI](https://www.hackerearth.com/practice/math/number-theory/basic-number-theory-1/tutorial/)
 
+[Prime Factorization](Prime & Prime Factorization.md)
 ~~~
 (A / B)  %= (A / B) (A * B^{-1}) % M 
           = ((A % M) * (B^{-1} %M)) % M
