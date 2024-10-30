@@ -14,7 +14,6 @@ using namespace std;
 #define mp make_pair
 #define ff first
 #define ss second
-#define int long long int
 #define PI 3.141592653589793238462
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
@@ -49,66 +48,40 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
+const int N = 1e6 + 10;
+vector<bool> v(N, true);
+vector<int> primes(N, 0);
+vector<int> ans(N);
+
 void solve(){
 
-    int n;  cin >> n;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++)  cin >> v[i];
-
-    auto isPos = [&](int k){
-        vector<bool> a(n+1, 0), b(n+1, 0);
-        a[0] = 1;
-
-        for(int i = 0; i < n; i++){
-            vector<bool> t_a(n+1, 0), t_b(n+1, 0);
-
-            if(a[i]){
-                if(abs(v[i+1] - v[i] <= k) && i + 1 < n)  t_a[i+2] = 1;
-                if(k >= 1) t_b[i+1] = 1;
-            }
-            
-            if(b[i]){
-                if(abs(v[i+1] - v[i]) <= k && i + 1 < n) t_b[i+2] = 1;
-            }
-            debug(t_a)
-            debug(t_b)
-            for(int j = 0; j <= n; j++){
-                if(t_a[j]) a[j] = 1;
-                if(t_b[j]) b[j] = 1;
-            }
-        }
-        if(a[n] || b[n]){
-            return true;
-        }
-        else return false;
-    };
-    
-    int l = 0, r = 1e18;
-    int mn = r;
-    int mid = l + (r - l) / 2;
-    while(l <= r){
-        if(isPos(mid)){
-            debug(mid)
-            mn = mid;
-            r = mid - 1;
-        }
-        else{
-            l = mid + 1;
-        }
-        mid = l + (r - l) / 2;
-    }
-    cout << mn << "\n";
+    int l, r;   cin >> l >> r;
+    cout << ans[r] - ans[l-1] << "\n";
 
 }
 
-signed main() {
-#ifndef ONLINE_JUDGE
-    freopen("Error.txt", "w", stderr);
-#endif
-
+signed main(){
     fastio();
+    #ifndef ONLINE_JUDGE
+        freopen("Error.txt", "w", stderr);
+    #endif
+
+    v[0] = v[1] = false;
+    for(int i = 2; i * i <= N; i++){
+        if(v[i]){
+            for(int j = i * i; j <= N; j += i) v[j] = false;
+        }
+    }
+    for(int i = 1; i <= N; i++){
+        primes[i] = primes[i-1] + (v[i] ?  1  :  0);
+    }
+
+    for(int i = 1; i <= N; i++){
+        ans[i] = ans[i-1] + (v[primes[i]] ? 1 : 0);
+    }
+
     int t = 1;
     cin >> t;
-    while(t--){     solve(); }
+    while(t--){solve();}
     return 0;
 }
