@@ -14,15 +14,15 @@ using namespace std;
 #define mp make_pair
 #define ff first
 #define ss second
-#define int   int
+#define int long long int
 #define PI 3.141592653589793238462
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;  // less == set, less_equal == multiset;
-typedef unsigned   ull;
-typedef  double lld;
+typedef unsigned long long ull;
+typedef long double lld;
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr << #x <<" "; _print(x); cerr << nline;
@@ -49,31 +49,29 @@ template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
-const int N = 1e5+5;
-vector<int> dp(N, -1);
-
-int minimum_cost(vector<int> &v, int i){
-
-    if(i == v.size()-1)     return 0;
-    if(dp[i] != -1)         return dp[i];
-    
-    int op1 = minimum_cost(v, i+1) + abs(v[i] - v[i+1]);
-
-    int op2 = LLONG_MAX;
-    if(i < v.size()-2){
-        op2 = minimum_cost(v, i+2) + abs(v[i] - v[i+2]);
+const int N = 1e3 + 10;
+int dp[N][N];
+bool isPos(vector<int> &v, int sum, int i){
+    if(i == 0){
+        if(sum == 0) return true;
+        else         return false;
     }
-    return dp[i] = min(op1, op2);
+    if(dp[i][sum]) return dp[i][sum];
+    if(sum >= v[i-1]){
+        return dp[i][sum] = isPos(v, sum - v[i-1], i-1) || isPos(v, sum, i-1);
+    }
+    else{
+        return dp[i][sum] = isPos(v, sum, i-1);
+    }
+
 }
 
 void solve(){
 
-    int n;  cin >> n;
+    int n, sum;  cin >> n >> sum;
     vector<int> v(n);
-    for(int i = 0; i < n; i++){
-        cin >> v[i];
-    }
-    cout << minimum_cost(v, 0) << endl;
+    for(int i = 0; i < n; i++)  cin >> v[i];
+    cout << (isPos(v, sum, n) ?  "YES"  :  "NO") << "\n";
 
 }
 
@@ -84,7 +82,7 @@ signed main() {
 
     fastio();
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--){     solve(); }
     return 0;
 }
