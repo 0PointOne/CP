@@ -1,5 +1,14 @@
 {
-    "folders": [],
+    "folders": [
+        {
+            "name": "Code",
+            "path": "C:/Users/Zisha/OneDrive/Desktop/Code"
+        },
+        {
+            "name": "CP",
+            "path": "."
+        }
+    ],
     "settings": {
         "files.associations": {
             "chrono": "cpp",
