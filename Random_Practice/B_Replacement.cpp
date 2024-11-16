@@ -5,20 +5,18 @@ using namespace std;
 
 void solve(){
     int n;  cin >> n;
-    string s, r;    cin >> s >> r;
-    r.pop_back();
-
-    int s1 = 0, r1 = 0, s0 = 0, r0 = 0;
+    string s, t;    cin >> s >> t;
+    int s1 = 0, s0 = 0, t1 = 0, t0 = 0;
     for(int i = 0; i < n; i++){
-        if(s[i] == '0') s0++;
-        else            s1++;
-    }
-    for(int i = 0; i < r.size(); i++){
-        if(r[i] == '0') r0++;
-        else            r1++;
-    }
+        if(s[i] == '1') s1++;
+        else            s0++;
 
-    cout << ((s1 - r0 > 0 && s0 - r1 > 0) ? "YES"  : "NO") << "\n";
+        if(i < n-2){
+            if(t[i] == '1') t1++;
+            else            t0++;
+        }
+    }
+    cout << ((s1 - t0 > 0 && s0 - t1 > 0)  ?   "YES"    :     "NO") << "\n";
 }
 
 signed main(){
