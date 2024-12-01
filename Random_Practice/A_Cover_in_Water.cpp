@@ -1,32 +1,32 @@
 #include<bits/stdc++.h>
 #define int long long int
-#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define fast ios_base::sync_with_stdio(false); cin.tie(NULL);
 using namespace std;
 
 void solve(){
-
     int n;  cin >> n;
     string s;   cin >> s;
-    int cnt = 0, mx = 0, sum = 0;
+    int mx = INT_MIN, cnt = 0, cnt_dot = 0;
+    int i = 0;
+    while(i < n){
 
-    for(int i = 0; i < n; i++){
-        if(s[i] == '.') cnt++, sum++;
-        else{
+        if(s[i] == '.'){
+            while(i < n && s[i] == '.') cnt++, cnt_dot++, i++;
             mx = max(mx, cnt);
             cnt = 0;
+            continue;
         }
+        i++;
     }
-    mx = max(mx, cnt);
 
-    if(mx >= 3) cout << 2 << "\n";
-    else        cout << sum << "\n";
-
+    cout << (mx >= 3 ?   2  : cnt_dot) << "\n";
 }
 
 signed main(){
     fast;
     int t = 1;
     cin >> t;
-    while(t--){solve();}
-    return 0;
+    while(t--){
+        solve();
+    }
 }

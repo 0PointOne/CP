@@ -1,12 +1,15 @@
 {
     "folders": [
         {
+            "name": "Code",
             "path": "C:/Users/Zisha/OneDrive/Desktop/Code"
         },
         {
+            "name": "CP",
             "path": "."
         },
         {
+            "name": "UniTasksHub",
             "path": "../UniTasksHub"
         }
     ],
