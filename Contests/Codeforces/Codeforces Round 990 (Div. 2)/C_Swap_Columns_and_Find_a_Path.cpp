@@ -13,20 +13,14 @@ void solve(){
         cin >> v[i].second;
     }
 
-    int mxIdx = 0, ans = INT_MIN;
+    int mxIdx = 0, ans = 0;
+    int mx = INT_MIN;
     for(int i = 0; i < n; i++){
-        if(ans < v[i].first + v[i].second){
-            ans = v[i].first + v[i].second;
-            mxIdx = i;
-        }
+        if(v[i].first > v[i].second) ans += v[i].first, mx = max(mx, v[i].second);
+        else ans += v[i].second, mx = max(mx, v[i].first);
     }
-    for(int i = 0; i < n; i++){
-        if(mxIdx != i){
-            if(v[i].first > v[i].second)  ans += v[i].first;
-            else                          ans += v[i].second;
-        }
-    }
-    cout << ans << "\n";
+
+    cout << ans + mx << "\n";
 }
 
 signed main(){
