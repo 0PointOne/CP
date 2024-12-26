@@ -15,7 +15,6 @@ void solve(){
     if(n >= 6) cout << 9 << " ";
     else if(((d == 3 || d == 6) && n >= 3) || d == 9) cout << 9 << " ";
 
-
     cout << "\n";
 }
 
